@@ -1,10 +1,15 @@
 package io.springbootlab.globaltopic.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
-
+@Entity
+@Table(name="Product")
 public class Product {
 
+    @Id
     private String productCode;
     private double productPrice;
     private boolean availability;

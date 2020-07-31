@@ -2,8 +2,11 @@ package io.springbootlab.globaltopic.service;
 
 import io.springbootlab.globaltopic.controller.ProductManagementController;
 import io.springbootlab.globaltopic.model.Product;
+import io.springbootlab.globaltopic.repository.ProductRepository;
+import io.springbootlab.globaltopic.repository.ProductRepositoryImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -14,6 +17,9 @@ import java.util.stream.IntStream;
 
 @Service
 public class ProductManagement {
+
+    @Autowired
+    ProductRepository productRepository;
 
     Logger logger= LoggerFactory.getLogger(ProductManagement.class);
 
@@ -59,6 +65,11 @@ public class ProductManagement {
         List<Product> productList=new ArrayList<>();
         productContainer.forEach((k,v)->{productList.add(v);});
         return new ResponseEntity<List<Product>>(productList,HttpStatus.OK);
+    }
+
+    public Product addProducts(Product product){
+        logger.info("addProducts(service) called...{}",productContainer);
+        return productRepository.addProduct(product);
     }
 
 }
