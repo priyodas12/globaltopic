@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: product-management-service
+  output:
+    ansi:
+      enabled: always
+server:
+  port: 8361
+
+logging:
+  level:
+    root: info
